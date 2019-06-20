@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ontology.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.ontology.entity.Message">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="is_verified" jdbcType="INTEGER" property="isVerified" />
+  </resultMap>
+
+</mapper>
