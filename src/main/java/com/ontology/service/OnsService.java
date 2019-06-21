@@ -10,7 +10,7 @@ public interface OnsService {
 
     Map<String, Object> registerDomain(String action, String ons);
 
-    JSONObject getParams(String action, String ons);
+    JSONObject getParams(String action, String id);
 
     String registerResult(String action, String id);
 

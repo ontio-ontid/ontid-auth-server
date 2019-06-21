@@ -31,10 +31,10 @@ public class OnsController {
     }
 
     @ApiOperation(value = "获取注册ons交易参数", notes = "获取注册ons交易参数", httpMethod = "GET")
-    @GetMapping("/qrcode/{ons}")
-    public JSONObject getParams(@PathVariable String ons) {
+    @GetMapping("/qrcode/{id}")
+    public JSONObject getParams(@PathVariable String id) {
         String action = "getParams";
-        JSONObject params = onsService.getParams(action,ons);
+        JSONObject params = onsService.getParams(action,id);
         return params;
     }
 

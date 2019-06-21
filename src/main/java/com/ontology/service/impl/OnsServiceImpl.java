@@ -72,17 +72,18 @@ public class OnsServiceImpl implements OnsService {
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         map.put("callback",callback);
-        map.put("qrcodeUrl",String.format(qrcodeUrl,ons));
+        map.put("qrcodeUrl",String.format(qrcodeUrl,id));
 
         return map;
     }
 
     @Override
-    public JSONObject getParams(String action, String ons) {
-        Ons exist = new Ons();
-        exist.setDomain(ons);
-        exist = onsMapper.selectOne(exist);
-        String paramsStr = exist.getParams();
+    public JSONObject getParams(String action, String id) {
+        Ons ons = onsMapper.selectByPrimaryKey(id);
+        if (ons == null) {
+            throw new AuthException(action, ErrorInfo.NOT_EXIST.descCN(),ErrorInfo.NOT_EXIST.descEN(),ErrorInfo.NOT_EXIST.code());
+        }
+        String paramsStr = ons.getParams();
         JSONObject params = JSONObject.parseObject(paramsStr);
         return params;
     }
