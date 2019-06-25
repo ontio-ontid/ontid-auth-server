@@ -121,7 +121,7 @@ public class OnsServiceImpl implements OnsService {
                     JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(event));
                     JSONArray notify = jsonObject.getJSONArray("Notify");
                     String address = notify.getJSONObject(0).getJSONArray("States").getString(1);
-                    ons.setOntid(address);
+                    ons.setOntid("did:ont:"+address);
                     ons.setSuccess(1);
                     break;
                 }
@@ -139,7 +139,7 @@ public class OnsServiceImpl implements OnsService {
     @Override
     public List<String> getOnsList(String action, String ontid) {
         Ons ons = new Ons();
-        ons.setOntid(ontid.replace("did:ont:",""));
+        ons.setOntid(ontid);
         ons.setSuccess(1);
         List<Ons> onsList = onsMapper.select(ons);
         List<String> list = new ArrayList<>();

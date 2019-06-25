@@ -49,7 +49,7 @@ public class MessageServiceImpl implements MessageService {
 
         Message msg = new Message();
         msg.setId(id);
-        msg.setOntid(user.replace("did:ont:", ""));
+        msg.setOntid("did:ont:"+user);
         msg.setMessage(req.getParams().getMessage());
         msg.setIsVerified(1);
         messageMapper.insert(msg);
