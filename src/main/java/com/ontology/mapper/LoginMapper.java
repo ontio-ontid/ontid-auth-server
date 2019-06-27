@@ -1,11 +1,11 @@
 package com.ontology.mapper;
 
-import com.ontology.entity.Message;
+import com.ontology.entity.Login;
 import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.common.Mapper;
 
 
 @Component
-public interface MessageMapper extends Mapper<Message> {
+public interface LoginMapper extends Mapper<Login> {
 
 }

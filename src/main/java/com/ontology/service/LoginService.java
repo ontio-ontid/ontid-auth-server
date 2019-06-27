@@ -4,7 +4,7 @@ import com.ontology.controller.vo.MessageDto;
 
 import java.util.Map;
 
-public interface MessageService {
+public interface LoginService {
 
     Map<String, Object> getMessage();
 

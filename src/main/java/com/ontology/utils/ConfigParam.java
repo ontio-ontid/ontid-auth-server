@@ -19,4 +19,16 @@ public class ConfigParam {
 	@Value("${callback.url}")
 	public String CALLBACK_URL;
 
+	/**
+	 *  注册合约地址
+	 */
+	@Value("${contract.hash.ons}")
+	public String CONTRACT_HASH_ONS;
+
+	/**
+	 *  域名管理者
+	 */
+	@Value("${ons.owner}")
+	public String ONS_OWNER;
+
 }

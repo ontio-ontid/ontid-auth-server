@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -43,6 +44,16 @@ public class SpringbootApplicationTests {
 	public void checkEvent() throws Exception {
 		Object event = sdkUtil.checkEvent("d471693cc856830928a3ce24422c4cd3d0415e205125037a6f45615a297c2127");
 		log.info("{}",event);
+	}
+
+	@Test
+	public void split() throws Exception {
+		String s = "ont............1...io";
+		String[] split = s.split("\\.");
+		log.info("{}", Arrays.toString(split));
+		if ("".equals(split[1])) {
+			log.info("{}", split[1]);
+		}
 	}
 
 }

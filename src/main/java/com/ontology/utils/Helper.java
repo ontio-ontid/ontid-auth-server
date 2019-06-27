@@ -251,7 +251,8 @@ public class Helper {
      * 拼接JSON格式参数
      * lijie 2019/3/20
      */
-    public static String getParams(String id, String contractHash, String method, List argsList, String payer) {
+    public static String getParams(String action, String id, String contractHash, String method, List argsList,
+                                   String payer, String callback, boolean ontidSign) {
         Map map = new HashMap();
         Map parms = new HashMap();
         Map invokeConfig = new HashMap();
@@ -270,8 +271,10 @@ public class Helper {
         invokeConfig.put("gasPrice",500);
 
         parms.put("invokeConfig",invokeConfig);
+        parms.put("callback",callback);
+        parms.put("ontidSign",ontidSign);
 
-        map.put("action","invoke");
+        map.put("action",action);
         map.put("id",id);
         map.put("params",parms);
         map.put("version","v1.0.0");

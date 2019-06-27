@@ -10,6 +10,8 @@ public class ParamsDto {
     private String type;
     @ApiModelProperty(name="user",value = "user")
     private String user;
+    @ApiModelProperty(name="domain",value = "domain")
+    private String domain;
     @ApiModelProperty(name="message",value = "message")
     private String message;
     @ApiModelProperty(name="publickey",value = "publickey")

@@ -2,7 +2,8 @@ package com.ontology.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ontology.bean.Result;
-import com.ontology.controller.vo.InvokeDto;
+import com.ontology.controller.vo.OnsLoginDto;
+import com.ontology.controller.vo.TransactionDto;
 import com.ontology.service.OnsService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -38,9 +39,9 @@ public class OnsController {
         return params;
     }
 
-    @ApiOperation(value = "获取交易hash", notes = "获取交易hash", httpMethod = "POST")
+    @ApiOperation(value = "发送交易hash", notes = "发送交易hash", httpMethod = "POST")
     @PostMapping("/invoke")
-    public void invokeResult(@RequestBody InvokeDto req) throws Exception {
+    public void invokeResult(@RequestBody TransactionDto req) throws Exception {
         String action = "invokeResult";
         onsService.invokeResult(action,req);
     }
@@ -53,11 +54,11 @@ public class OnsController {
         return new Result(action,0, "SUCCESS", isSuccessful);
     }
 
-    @ApiOperation(value = "根据ontid获取ons列表", notes = "根据ontid获取ons列表", httpMethod = "GET")
-    @GetMapping("/list/{ontid}")
-    public Result getOnsList(@PathVariable String ontid) throws Exception {
+    @ApiOperation(value = "根据ontid和主域名获取ons列表", notes = "根据ontid和主域名获取ons列表", httpMethod = "POST")
+    @PostMapping("/list")
+    public Result getOnsList(@RequestBody OnsLoginDto req) throws Exception {
         String action = "getOnsList";
-        List<String> list = onsService.getOnsList(action,ontid);
+        List<String> list = onsService.getOnsList(action,req);
         return new Result(action,0, "SUCCESS", list);
     }
 

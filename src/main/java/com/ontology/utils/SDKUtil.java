@@ -169,4 +169,15 @@ public class SDKUtil {
         return s;
     }
 
+    public Object sendTransaction(Transaction transaction, String acctWif, boolean preExec) throws Exception {
+        OntSdk ontSdk = getOntSdk();
+        Account account = new Account(Account.getPrivateKeyFromWIF(acctWif), ontSdk.getWalletMgr().getSignatureScheme());
+        ontSdk.addSign(transaction,account);
+        if (preExec) {
+            return ontSdk.getConnect().sendRawTransactionPreExec(transaction.toHexString());
+        } else {
+            ontSdk.getConnect().sendRawTransaction(transaction.toHexString());
+            return transaction.hash().toString();
+        }
+    }
 }

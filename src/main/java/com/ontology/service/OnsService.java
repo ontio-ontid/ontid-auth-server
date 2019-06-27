@@ -1,7 +1,8 @@
 package com.ontology.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ontology.controller.vo.InvokeDto;
+import com.ontology.controller.vo.OnsLoginDto;
+import com.ontology.controller.vo.TransactionDto;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public interface OnsService {
 
     String registerResult(String action, String id);
 
-    void invokeResult(String action, InvokeDto req) throws Exception;
+    void invokeResult(String action, TransactionDto req) throws Exception;
 
-    List<String> getOnsList(String action, String ontid);
+    List<String> getOnsList(String action, OnsLoginDto onsLoginDto);
 }

@@ -2,7 +2,7 @@ package com.ontology.controller;
 
 import com.ontology.bean.Result;
 import com.ontology.controller.vo.MessageDto;
-import com.ontology.service.MessageService;
+import com.ontology.service.LoginService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +13,19 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/message")
+@RequestMapping("/api/v1/login")
 @CrossOrigin
-public class MessageController {
+public class LoginController {
 
     @Autowired
-    private MessageService messageService;
+    private LoginService loginService;
 
 
     @ApiOperation(value = "获取message", notes = "获取message", httpMethod = "GET")
     @GetMapping
     public Result getMessage() {
         String action = "getMessage";
-        Map<String,Object> result = messageService.getMessage();
+        Map<String,Object> result = loginService.getMessage();
         return new Result(action,0, "SUCCESS", result);
     }
 
@@ -33,7 +33,7 @@ public class MessageController {
     @PostMapping("/callback")
     public Map<String,Object> callback(@RequestBody MessageDto req) {
         String action = "login";
-        Map<String,Object> result = messageService.callback(action,req);
+        Map<String,Object> result = loginService.callback(action,req);
         return result;
     }
 
@@ -41,7 +41,7 @@ public class MessageController {
     @GetMapping("/result/{id}")
     public Result registerResult(@PathVariable String id) {
         String action = "loginResult";
-        Map<String,Object> isSuccessful = messageService.loginResult(action,id);
+        Map<String,Object> isSuccessful = loginService.loginResult(action,id);
         return new Result(action,0, "SUCCESS", isSuccessful);
     }
 }
