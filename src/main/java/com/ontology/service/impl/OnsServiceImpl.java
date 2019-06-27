@@ -109,7 +109,7 @@ public class OnsServiceImpl implements OnsService {
     }
 
     @Override
-    public void invokeResult(String action, TransactionDto req) throws Exception {
+    public JSONObject invokeResult(String action, TransactionDto req) throws Exception {
         Ons ons = onsMapper.selectByPrimaryKey(req.getId());
         if (ons == null) {
             throw new AuthException(action, ErrorInfo.NOT_EXIST.descCN(), ErrorInfo.NOT_EXIST.descEN(), ErrorInfo.NOT_EXIST.code());
@@ -132,8 +132,8 @@ public class OnsServiceImpl implements OnsService {
                             JSONArray notify = jsonObject.getJSONArray("Notify");
                             String domain = notify.getJSONObject(0).getJSONArray("States").getString(1);
                             String ontid = notify.getJSONObject(0).getJSONArray("States").getString(2);
-                            ons.setOntid(ontid);
-                            ons.setDomain(domain);
+                            ons.setOntid(new String (com.github.ontio.common.Helper.hexToBytes(ontid)));
+                            ons.setDomain(new String (com.github.ontio.common.Helper.hexToBytes(domain)));
                             ons.setSuccess(1);
                             break;
                         }
@@ -147,6 +147,7 @@ public class OnsServiceImpl implements OnsService {
                 }
             }
         });
+        return new JSONObject();
     }
 
     @Override

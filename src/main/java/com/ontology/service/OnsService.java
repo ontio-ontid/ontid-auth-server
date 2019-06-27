@@ -15,7 +15,7 @@ public interface OnsService {
 
     String registerResult(String action, String id);
 
-    void invokeResult(String action, TransactionDto req) throws Exception;
+    JSONObject invokeResult(String action, TransactionDto req) throws Exception;
 
     List<String> getOnsList(String action, OnsLoginDto onsLoginDto);
 }

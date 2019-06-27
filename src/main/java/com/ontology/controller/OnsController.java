@@ -41,9 +41,9 @@ public class OnsController {
 
     @ApiOperation(value = "发送交易hash", notes = "发送交易hash", httpMethod = "POST")
     @PostMapping("/invoke")
-    public void invokeResult(@RequestBody TransactionDto req) throws Exception {
+    public JSONObject invokeResult(@RequestBody TransactionDto req) throws Exception {
         String action = "invokeResult";
-        onsService.invokeResult(action,req);
+        return onsService.invokeResult(action,req);
     }
 
     @ApiOperation(value = "查询注册是否成功", notes = "查询注册是否成功", httpMethod = "GET")
