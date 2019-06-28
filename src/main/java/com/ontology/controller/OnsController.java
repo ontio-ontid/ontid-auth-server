@@ -39,7 +39,7 @@ public class OnsController {
         return params;
     }
 
-    @ApiOperation(value = "发送交易hash", notes = "发送交易hash", httpMethod = "POST")
+    @ApiOperation(value = "回调返回交易hex", notes = "回调返回交易hex", httpMethod = "POST")
     @PostMapping("/invoke")
     public JSONObject invokeResult(@RequestBody TransactionDto req) throws Exception {
         String action = "invokeResult";

@@ -74,40 +74,35 @@ method：Get
 
 ```source-json
 {
-    "action": "invoke",
-    "id": "a0308abd-d57e-41fe-9554-5fe6435db2fe",
-    "params": {
-        "invokeConfig": {
-            "gasLimit": 20000,
-            "contractHash": "8b344a43204e60750e7ccc8c1b708a67f88f2c43",
-            "functions": [
-                {
-                    "args": [
-                        {
-                            "name": "arg0-str",
-                            "value": "String:abc.on.ont"
-                        },
-                        {
-                            "name": "arg1-str",
-                            "value": "Address:%address"
-                        },
-                        {
-                            "name": "arg2-str",
-                            "value": "Address:AcdBfqe7SG8xn4wfGrtUbbBDxw2x1e8UKm"
-                        },
-                        {
-                            "name": "arg3-int",
-                            "value": 100000000
-                        }
-                    ],
-                    "operation": "transferOng"
-                }
-            ],
-            "payer": "%address",
-            "gasPrice": 500
-        }
-    },
-    "version": "v1.0.0"
+	"action": "signTransaction",
+	"id": "80edaf95-4706-41f1-a25b-57447e4e3094",
+	"params": {
+		"invokeConfig": {
+			"gasLimit": 40000,
+			"contractHash": "fb12993d6f13a2ec911f3bbfe534be90e4deeca4",
+			"functions": [{
+				"args": [{
+					"name": "fulldomain",
+					"value": "String:ning.on.ont"
+				}, {
+					"name": "registerdid",
+					"value": "String:%ontid"
+				}, {
+					"name": "idx",
+					"value": 1
+				}, {
+					"name": "validto",
+					"value": -1
+				}],
+				"operation": "registerDomain"
+			}],
+			"payer": "AcdBfqe7SG8xn4wfGrtUbbBDxw2x1e8UKm",
+			"gasPrice": 500
+		},
+		"ontidSign": true,
+		"callback": "http://192.168.3.121:7878/api/v1/ons/invoke"
+	},
+	"version": "v1.0.0"
 }
 ```
 | Field Name | Type | Description |
@@ -128,20 +123,21 @@ method：Post
 请求：
 ```source-json
 {
-  "action": "invoke",
-  "id": "10ba038e-48da-487b-96e8-8d3b99b6d18a",
-  "error": 0,
-  "desc": "SUCCESS",
-  "result": "tx hash"
+	"action": "invoke",
+	"id": "10ba038e-48da-487b-96e8-8d3b99b6d18a",
+	"version": "v1.0.0",
+	"params": {
+		"signedTx": "00d1ed6aa95cf401000000000000409c000000000000f5f7b705b03ae46e48f89c2b99e79fa4391536fe6e0360ea00016f51c10331313151c114000000000000000000000000000000000000000214010b5816b180ffb41e3889b6f42aeaf31fd63209143fc9fa9491df7e93b94db2df99e6af2d67ad34b756c10973656e64546f6b656e67bae44577a468b5bfd00ebbaba7d91204204828470000"
+	}
 }
 ```
 | Field Name | Type | Description |
 |---|---|---|
 | action    | String | 动作标志                      |
 | id        | String | 记录的id                      |
-| error     | int    | 错误码                        |
-| desc      | String | 成功为SUCCESS，失败为错误描述 |
-| result    | String | 交易hash                      |
+| version   | String | 版本号                        |
+| params    | String | 参数                          |
+| signedTx  | String | 签名后的交易hash              |
 
 
 ###  查询注册是否成功
